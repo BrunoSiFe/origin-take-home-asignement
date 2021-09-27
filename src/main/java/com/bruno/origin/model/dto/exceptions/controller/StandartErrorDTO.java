@@ -1,0 +1,45 @@
+package com.bruno.origin.model.dto.exceptions.controller;
+
+public class StandartErrorDTO {
+	
+	private Integer status;
+	
+	private String msg;
+	
+	private Long timeStamp;
+		
+	public StandartErrorDTO() {}
+	
+	public StandartErrorDTO(Integer status, String msg, Long timeStamp) {
+		this.status = status;
+		this.msg = msg;
+		this.timeStamp = timeStamp;
+	}
+
+
+
+	public Integer getStatus() {
+		return status;
+	}
+
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
+
+	public String getMsg() {
+		return msg;
+	}
+
+	public void setMsg(String msg) {
+		this.msg = msg;
+	}
+
+	public Long getTimeStamp() {
+		return timeStamp;
+	}
+
+	public void setTimeStamp(Long timeStamp) {
+		this.timeStamp = timeStamp;
+	}
+
+}

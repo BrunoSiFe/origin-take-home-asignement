@@ -14,28 +14,28 @@ public class InsuranceResponseMapper {
 
 		InsuranceResponseDTO insuranceResponse = new InsuranceResponseDTO();
 
-		if (isInsuranceScoreIneligible(insuranceResultPerLine.get(InsuranceLines.AUTO_LINE).getFinalScore())) {
+		if (isInsuranceScoreNotIneligible(insuranceResultPerLine.get(InsuranceLines.AUTO_LINE).getFinalScore())) {
 			calculateAutoFinalScore(insuranceResultPerLine.get(InsuranceLines.AUTO_LINE).getNumericalScore(),
 					insuranceResponse);
 		}else {
 			insuranceResponse.setAuto(InsuranceScoreResult.INELIGIBLE);
 		}
 
-		if (isInsuranceScoreIneligible(insuranceResultPerLine.get(InsuranceLines.DISABILITY_LINE).getFinalScore())) {
+		if (isInsuranceScoreNotIneligible(insuranceResultPerLine.get(InsuranceLines.DISABILITY_LINE).getFinalScore())) {
 			calculateDisabilityFinalScore(
 					insuranceResultPerLine.get(InsuranceLines.DISABILITY_LINE).getNumericalScore(), insuranceResponse);
 		}else {
 			insuranceResponse.setDisability(InsuranceScoreResult.INELIGIBLE);
 		}
 
-		if (isInsuranceScoreIneligible(insuranceResultPerLine.get(InsuranceLines.HOUSE_LINE).getFinalScore())) {
+		if (isInsuranceScoreNotIneligible(insuranceResultPerLine.get(InsuranceLines.HOUSE_LINE).getFinalScore())) {
 			calculateHomeFinalScore(insuranceResultPerLine.get(InsuranceLines.HOUSE_LINE).getNumericalScore(),
 					insuranceResponse);
 		}else {
 			insuranceResponse.setHome(InsuranceScoreResult.INELIGIBLE);
 		}
 		
-		if (isInsuranceScoreIneligible(insuranceResultPerLine.get(InsuranceLines.LIFE_LINE).getFinalScore())) {
+		if (isInsuranceScoreNotIneligible(insuranceResultPerLine.get(InsuranceLines.LIFE_LINE).getFinalScore())) {
 			calculateLifeFinalScore(insuranceResultPerLine.get(InsuranceLines.LIFE_LINE).getNumericalScore(),
 					insuranceResponse);
 		}else {
@@ -49,7 +49,7 @@ public class InsuranceResponseMapper {
 			InsuranceResponseDTO insuranceResponse) {
 		if (numericalScore < 1) {
 			insuranceResponse.setAuto(InsuranceScoreResult.ECONOMIC);
-		} else if (numericalScore <= 2 && numericalScore >= 1) {
+		} else if (numericalScore == 2 || numericalScore == 1) {
 			insuranceResponse.setAuto(InsuranceScoreResult.REGULAR);
 		} else {
 			insuranceResponse.setAuto(InsuranceScoreResult.RESPONSIBLE);
@@ -62,7 +62,7 @@ public class InsuranceResponseMapper {
 			InsuranceResponseDTO insuranceResponse) {
 		if (numericalScore < 1) {
 			insuranceResponse.setDisability(InsuranceScoreResult.ECONOMIC);
-		} else if (numericalScore <= 2 && numericalScore >= 1) {
+		} else if (numericalScore == 2 || numericalScore == 1) {
 			insuranceResponse.setDisability(InsuranceScoreResult.REGULAR);
 		} else {
 			insuranceResponse.setDisability(InsuranceScoreResult.RESPONSIBLE);
@@ -75,7 +75,7 @@ public class InsuranceResponseMapper {
 			InsuranceResponseDTO insuranceResponse) {
 		if (numericalScore < 1) {
 			insuranceResponse.setHome(InsuranceScoreResult.ECONOMIC);
-		} else if (numericalScore <= 2 && numericalScore >= 1) {
+		} else if (numericalScore == 2 || numericalScore == 1) {
 			insuranceResponse.setHome(InsuranceScoreResult.REGULAR);
 		} else {
 			insuranceResponse.setHome(InsuranceScoreResult.RESPONSIBLE);
@@ -88,7 +88,7 @@ public class InsuranceResponseMapper {
 			InsuranceResponseDTO insuranceResponse) {
 		if (numericalScore < 1) {
 			insuranceResponse.setLife(InsuranceScoreResult.ECONOMIC);
-		} else if (numericalScore <= 2 && numericalScore >= 1) {
+		} else if (numericalScore == 2 || numericalScore == 1) {
 			insuranceResponse.setLife(InsuranceScoreResult.REGULAR);
 		} else {
 			insuranceResponse.setLife(InsuranceScoreResult.RESPONSIBLE);
@@ -97,7 +97,7 @@ public class InsuranceResponseMapper {
 		return insuranceResponse;
 	}
 
-	private boolean isInsuranceScoreIneligible(String finalScore) {
+	private boolean isInsuranceScoreNotIneligible(String finalScore) {
 		return !Objects.isNull(finalScore) && !finalScore.equals(InsuranceScoreResult.INELIGIBLE);
 	}
 

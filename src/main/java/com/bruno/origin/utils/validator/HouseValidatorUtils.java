@@ -9,17 +9,13 @@ import com.bruno.origin.model.dto.HouseDTO;
 public class HouseValidatorUtils {
 
 	public void validateHouseValues(HouseDTO houseData) {
-		if (validateStringEmpty(houseData.getOwnershipStatus())
+		if (!Objects.isNull(houseData)
 				&& validateOwnershipStatus(houseData.getOwnershipStatus())) {
 			throw new WrongParametersException("House ownership status invalid.");
 		}
 	}
 
-	private Boolean validateStringEmpty(String ownershipStatus) {
-		return !(Objects.isNull(ownershipStatus));
-	}
-
-	private Boolean validateOwnershipStatus(String ownershipStatus) {
+	private boolean validateOwnershipStatus(String ownershipStatus) {
 		return !ownershipStatus.equals(HouseValidationEnum.OWNED.getOwnershipStatus()) && !ownershipStatus.equals(HouseValidationEnum.MORTGAGED.getOwnershipStatus());
 	}
 }

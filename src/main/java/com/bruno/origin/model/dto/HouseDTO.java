@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class HouseDTO {
 	
-	@JsonProperty("owenership_status")
+	@JsonProperty("ownership_status")
 	private String ownershipStatus;
 
 	public String getOwnershipStatus() {

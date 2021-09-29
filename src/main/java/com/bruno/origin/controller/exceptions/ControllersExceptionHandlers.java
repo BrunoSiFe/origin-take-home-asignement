@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.bruno.origin.exception.DataIntegrityException;
 import com.bruno.origin.exception.ObjectNotFoundException;
+import com.bruno.origin.exception.WrongParametersException;
 import com.bruno.origin.model.dto.exceptions.controller.StandartErrorDTO;
 import com.bruno.origin.model.dto.exceptions.controller.ValidationError;
 
@@ -49,6 +50,16 @@ public class ControllersExceptionHandlers {
 		for (FieldError fieldError : methodArgumentNotValidException.getBindingResult().getFieldErrors()) {
 			erroOcorrido.addError(fieldError.getField(), fieldError.getDefaultMessage());
 		}
+
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(erroOcorrido);
+	}
+	
+	@ExceptionHandler(WrongParametersException.class)
+	public ResponseEntity<StandartErrorDTO> argumentsValidation(
+			WrongParametersException wrongParametersException, HttpServletRequest request) {
+
+		var erroOcorrido = new StandartErrorDTO(HttpStatus.BAD_REQUEST.value(),
+				wrongParametersException.getMessage(), System.currentTimeMillis());
 
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(erroOcorrido);
 	}

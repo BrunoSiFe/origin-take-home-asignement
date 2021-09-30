@@ -11,9 +11,9 @@
 	</parent>
 	<groupId>com.bruno.origin</groupId>
 	<artifactId>origin-take-home-assignment</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.4</version>
 	<name>origin-take-home-assignment</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Project for the take-home assignment from Origin.</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>

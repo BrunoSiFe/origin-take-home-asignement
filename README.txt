@@ -1,7 +1,7 @@
 1- How to run the code :
 
 1 - Run the command "mvn clean install" on the project root, this will generate the jar file with the compiled program.
-2 - Run the command "java -jar .\target\origin-take-home-assignment-0.0.1-SNAPSHOT.jar", this will run the compiled program.
+2 - Run the command "java -jar .\target\origin-take-home-assignment-1.4.jar", this will run the compiled program.
  
 
 Main technical decisions made:
@@ -18,6 +18,11 @@ A Swagger Api was created for the project to document easily the endpoints, it c
 http://localhost:8080/swagger-ui.html#
 
 All validations, and point reducing/adding where created in separate files to allow for future use.
+
+The tests were made to all the classes that had either programming logic or business rules.
+
+There was no business rules implemented in the main service class, InsuranceService, being added in separate files
+to permit easier reuse and refactor, if needed. 
 
 Notes:
 If Apache maven is not installed, it will be impossible to run the program, the reason being that maven was the selected

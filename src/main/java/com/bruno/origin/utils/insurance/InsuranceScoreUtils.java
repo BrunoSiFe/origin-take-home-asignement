@@ -93,13 +93,13 @@ public class InsuranceScoreUtils {
 		InsuranceResult insuranceResultDisability = insuranceResultPerLine.get(InsuranceLines.DISABILITY_LINE);
 		InsuranceResult insuranceResultLife = insuranceResultPerLine.get(InsuranceLines.LIFE_LINE);
 
-		Integer numericalInsuranceScore = insuranceResultDisability.getNumericalScore();
-		numericalInsuranceScore += scorePointQuantityToBeDeduced;
-		insuranceResultDisability.setNumericalScore(numericalInsuranceScore);
+		Integer numericalInsuranceScoreDisability = insuranceResultDisability.getNumericalScore();
+		numericalInsuranceScoreDisability += scorePointQuantityToBeDeduced;
+		insuranceResultDisability.setNumericalScore(numericalInsuranceScoreDisability);
 
-		numericalInsuranceScore = insuranceResultLife.getNumericalScore();
-		numericalInsuranceScore += scorePointQuantityToBeDeduced;
-		insuranceResultLife.setNumericalScore(numericalInsuranceScore);
+		Integer numericalInsuranceScoreLife = insuranceResultLife.getNumericalScore();
+		numericalInsuranceScoreLife += scorePointQuantityToBeDeduced;
+		insuranceResultLife.setNumericalScore(numericalInsuranceScoreLife);
 		
 		insuranceResultPerLine.replace(InsuranceLines.DISABILITY_LINE, insuranceResultDisability);
 		insuranceResultPerLine.replace(InsuranceLines.LIFE_LINE, insuranceResultLife);
